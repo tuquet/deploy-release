@@ -1,0 +1,32 @@
+directories:
+  output: release/${version}
+  buildResources: build
+appId: your.app.id
+asar: false
+extraResources:
+  - filter:
+      - node_modules/.prisma/**/*
+      - node_modules/@prisma/client/**/*
+      - server/prisma/database/techfusion.sqlite
+files:
+  - filter:
+      - .output/**/*
+      - dist-electron
+mac:
+  artifactName: ${productName}_${version}.${ext}
+  target:
+    - dmg
+  icon: ./public/pwa-512x512.png
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}_${version}.${ext}
+  icon: ./public/pwa-512x512.png
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+electronVersion: 27.1.3
